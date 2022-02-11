@@ -1,4 +1,4 @@
-import { Rover, Direction } from './types';
+import { Rover, Direction, Rock } from './types';
 import { gridHeight, gridWidth } from './variables';
 
 const clamp = (num: number, min: number, max: number) => {
@@ -33,5 +33,12 @@ export const rover: Rover = {
     rover.y = clamp(y, 0, gridHeight - 1);
 
     return rover.x !== x || rover.y !== y;
+  },
+};
+
+export const rock: Rock = {
+  respawn() {
+    this.x = Math.floor(Math.random() * gridWidth);
+    this.y = Math.floor(Math.random() * gridHeight);
   },
 };

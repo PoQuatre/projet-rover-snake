@@ -1,5 +1,5 @@
 import { initKeyboardListener, initTouchListener } from './controls';
-import { rover } from './objects';
+import { rock, rover } from './objects';
 import { draw } from './render';
 import {
   cellHeight,
@@ -23,9 +23,15 @@ canvas.height = gridPadding * 2 + cellHeight * gridHeight;
 initKeyboardListener();
 initTouchListener();
 
+rock.respawn();
+
 const gameLoop = setInterval(() => {
   if (rover.move()) {
     clearInterval(gameLoop);
+  }
+
+  if (rover.x === rock.x && rover.y === rock.y) {
+    rock.respawn();
   }
 
   requestAnimationFrame(() => draw(ctx, canvas.width, canvas.height));

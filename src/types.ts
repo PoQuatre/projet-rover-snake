@@ -12,3 +12,9 @@ export interface Rover {
   y: number;
   move(): boolean;
 }
+
+export interface Rock {
+  x?: number;
+  y?: number;
+  respawn(): void;
+}
