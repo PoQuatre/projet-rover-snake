@@ -1,3 +1,4 @@
 node_modules
 .eslintcache
 /public/static/bundle/script.js
+.vscode
