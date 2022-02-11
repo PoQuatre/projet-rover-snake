@@ -10,6 +10,8 @@ export interface Rover {
   direction: Direction;
   x: number;
   y: number;
+  tailLength: number;
+  tail: { x: number; y: number }[];
   move(): boolean;
   spawn(): void;
 }

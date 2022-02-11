@@ -27,13 +27,18 @@ rover.spawn();
 rock.respawn();
 
 const gameLoop = setInterval(() => {
+  rover.tail.unshift({ x: rover.x, y: rover.y });
+
   if (rover.move()) {
     clearInterval(gameLoop);
   }
 
   if (rover.x === rock.x && rover.y === rock.y) {
+    rover.tailLength++;
     rock.respawn();
   }
+
+  rover.tail = rover.tail.slice(0, rover.tailLength);
 
   requestAnimationFrame(() => draw(ctx, canvas.width, canvas.height));
 }, tickSpeed);

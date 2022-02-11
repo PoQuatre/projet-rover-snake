@@ -9,6 +9,8 @@ export const rover: Rover = {
   direction: Direction.UP,
   x: 0,
   y: 0,
+  tailLength: 0,
+  tail: [],
   move() {
     let { x, y } = rover;
 

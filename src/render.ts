@@ -35,6 +35,21 @@ const drawRover = (ctx: Context) => {
   ctx.fillStyle = '#000';
 };
 
+const drawTail = (ctx: Context) => {
+  ctx.fillStyle = '#0f09';
+
+  for (let i = 0; i < rover.tail.length; i++) {
+    ctx.fillRect(
+      gridPadding + rover.tail[i].x * cellWidth,
+      gridPadding + rover.tail[i].y * cellHeight,
+      cellWidth,
+      cellHeight,
+    );
+  }
+
+  ctx.fillStyle = '#000';
+};
+
 const drawRock = (ctx: Context) => {
   ctx.fillStyle = '#f00';
 
@@ -55,5 +70,6 @@ export const draw = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
 
   drawGrid(ctx);
   drawRover(ctx);
+  drawTail(ctx);
   drawRock(ctx);
 };
