@@ -1,3 +1,5 @@
+import { initKeyboardListener, initTouchListener } from './controls';
+import { rover } from './objects';
 import { draw } from './render';
 import {
   cellHeight,
@@ -5,6 +7,7 @@ import {
   gridHeight,
   gridPadding,
   gridWidth,
+  tickSpeed,
 } from './variables';
 
 const canvas = <HTMLCanvasElement>document.getElementById('game');
@@ -16,5 +19,16 @@ if (ctx === null) {
 
 canvas.width = gridPadding * 2 + cellWidth * gridWidth;
 canvas.height = gridPadding * 2 + cellHeight * gridHeight;
+
+initKeyboardListener();
+initTouchListener();
+
+const gameLoop = setInterval(() => {
+  if (rover.move()) {
+    clearInterval(gameLoop);
+  }
+
+  requestAnimationFrame(() => draw(ctx, canvas.width, canvas.height));
+}, tickSpeed);
 
 draw(ctx, canvas.width, canvas.height);
