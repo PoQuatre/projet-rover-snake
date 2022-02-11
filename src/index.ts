@@ -30,7 +30,7 @@ rock.respawn();
 const gameLoop = setInterval(() => {
   rover.tail.unshift({ x: rover.x, y: rover.y });
 
-  if (rover.move()) {
+  if (rover.move() || rover.isTail(rover.x, rover.y)) {
     clearInterval(gameLoop);
   }
 

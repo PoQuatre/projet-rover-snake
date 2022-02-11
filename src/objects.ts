@@ -49,11 +49,22 @@ export const rover: Rover = {
       this.direction = this.y > yDiff ? Direction.UP : Direction.DOWN;
     }
   },
+  isTail(x, y) {
+    return this.tail.filter((v) => v.x === x && v.y === y).length > 0;
+  },
 };
 
 export const rock: Rock = {
   respawn() {
-    this.x = Math.floor(Math.random() * gridWidth);
-    this.y = Math.floor(Math.random() * gridHeight);
+    let x = Math.floor(Math.random() * gridWidth);
+    let y = Math.floor(Math.random() * gridHeight);
+
+    while ((x === rover.x && y === rover.y) || rover.isTail(x, y)) {
+      x = Math.floor(Math.random() * gridWidth);
+      y = Math.floor(Math.random() * gridHeight);
+    }
+
+    this.x = x;
+    this.y = y;
   },
 };

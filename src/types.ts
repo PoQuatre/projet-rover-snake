@@ -14,6 +14,7 @@ export interface Rover {
   tail: { x: number; y: number }[];
   move(): boolean;
   spawn(): void;
+  isTail(x: number, y: number): boolean;
 }
 
 export interface Rock {
