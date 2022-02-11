@@ -4,6 +4,10 @@ import { swipeThreshold } from './variables';
 
 export const initKeyboardListener = () => {
   document.addEventListener('keydown', (e) => {
+    if (e.code === 'KeyR') window.location.reload();
+  });
+
+  document.addEventListener('keydown', (e) => {
     switch (e.code) {
       case 'ArrowUp':
       case 'KeyW':
