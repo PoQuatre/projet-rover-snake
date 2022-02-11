@@ -52,6 +52,24 @@ export const rover: Rover = {
   isTail(x, y) {
     return this.tail.filter((v) => v.x === x && v.y === y).length > 0;
   },
+  saveState() {
+    this.state = {
+      direction: this.direction,
+      x: this.x,
+      y: this.y,
+      tailLength: this.tailLength,
+      tail: [...this.tail],
+    };
+  },
+  rollbackState() {
+    if (this.state) {
+      this.direction = this.state.direction;
+      this.x = this.state.x;
+      this.y = this.state.y;
+      this.tailLength = this.state.tailLength;
+      this.tail = [...this.state.tail];
+    }
+  },
 };
 
 export const rock: Rock = {

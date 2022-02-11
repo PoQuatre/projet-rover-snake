@@ -28,10 +28,12 @@ rover.spawn();
 rock.respawn();
 
 const gameLoop = setInterval(() => {
+  rover.saveState();
   rover.tail.unshift({ x: rover.x, y: rover.y });
 
   if (rover.move() || rover.isTail(rover.x, rover.y)) {
     clearInterval(gameLoop);
+    rover.rollbackState();
   }
 
   if (rover.x === rock.x && rover.y === rock.y) {
