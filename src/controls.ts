@@ -2,36 +2,53 @@ import { rover } from './objects';
 import { Direction } from './types';
 import { swipeThreshold } from './variables';
 
+const isAxisX = (dir: Direction) => {
+  return dir === Direction.UP || dir === Direction.DOWN;
+};
+
+const isAxisY = (dir: Direction) => {
+  return dir === Direction.LEFT || dir === Direction.RIGHT;
+};
+
+const isSameAxis = (dir1: Direction, dir2: Direction) => {
+  return (isAxisX(dir1) && isAxisX(dir2)) || (isAxisY(dir1) && isAxisY(dir2));
+};
+
 export const initKeyboardListener = () => {
   document.addEventListener('keydown', (e) => {
     if (e.code === 'KeyR') window.location.reload();
   });
 
   document.addEventListener('keydown', (e) => {
+    let direction;
+
     switch (e.code) {
       case 'ArrowUp':
       case 'KeyW':
-        rover.direction = Direction.UP;
+        direction = Direction.UP;
         break;
 
       case 'ArrowDown':
       case 'KeyS':
-        rover.direction = Direction.DOWN;
+        direction = Direction.DOWN;
         break;
 
       case 'ArrowLeft':
       case 'KeyA':
-        rover.direction = Direction.LEFT;
+        direction = Direction.LEFT;
         break;
 
       case 'ArrowRight':
       case 'KeyD':
-        rover.direction = Direction.RIGHT;
+        direction = Direction.RIGHT;
         break;
 
       default:
+        direction = Direction.UP;
         break;
     }
+
+    if (!isSameAxis(rover.direction, direction)) rover.direction = direction;
   });
 };
 
@@ -54,11 +71,15 @@ export const initTouchListener = () => {
       return;
     }
 
+    let direction;
+
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      rover.direction = xDiff > 0 ? Direction.LEFT : Direction.RIGHT;
+      direction = xDiff > 0 ? Direction.LEFT : Direction.RIGHT;
     } else {
-      rover.direction = yDiff > 0 ? Direction.UP : Direction.DOWN;
+      direction = yDiff > 0 ? Direction.UP : Direction.DOWN;
     }
+
+    if (!isSameAxis(rover.direction, direction)) rover.direction = direction;
 
     xStart = null;
     yStart = null;
