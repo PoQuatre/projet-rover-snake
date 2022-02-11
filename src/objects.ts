@@ -34,6 +34,19 @@ export const rover: Rover = {
 
     return rover.x !== x || rover.y !== y;
   },
+  spawn() {
+    this.x = Math.floor(Math.random() * gridWidth);
+    this.y = Math.floor(Math.random() * gridHeight);
+
+    const xDiff = gridWidth - this.x - 1;
+    const yDiff = gridHeight - this.y - 1;
+
+    if (Math.max(this.x, xDiff) > Math.max(this.y, yDiff)) {
+      this.direction = this.x > xDiff ? Direction.LEFT : Direction.RIGHT;
+    } else {
+      this.direction = this.y > yDiff ? Direction.UP : Direction.DOWN;
+    }
+  },
 };
 
 export const rock: Rock = {

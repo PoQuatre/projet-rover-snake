@@ -23,6 +23,7 @@ canvas.height = gridPadding * 2 + cellHeight * gridHeight;
 initKeyboardListener();
 initTouchListener();
 
+rover.spawn();
 rock.respawn();
 
 const gameLoop = setInterval(() => {
