@@ -1,0 +1,1 @@
+(()=>{"use strict";const t=document.getElementById("game"),e=t.getContext("2d");if(null===e)throw new Error("An error occured while getting the canvas context");t.width=540,t.height=540,((t,e,r)=>{t.clearRect(0,0,e,r),(t=>{for(let e=0;e<10;e++)for(let r=0;r<10;r++)t.strokeRect(20+50*e,20+50*r,50,50)})(t)})(e,t.width,t.height)})();
