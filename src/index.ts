@@ -10,6 +10,7 @@ import {
   tickSpeed,
 } from './variables';
 
+const score = <HTMLSpanElement>document.getElementById('score');
 const canvas = <HTMLCanvasElement>document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
@@ -39,6 +40,8 @@ const gameLoop = setInterval(() => {
   }
 
   rover.tail = rover.tail.slice(0, rover.tailLength);
+
+  score.innerText = rover.tailLength.toString();
 
   requestAnimationFrame(() => draw(ctx, canvas.width, canvas.height));
 }, tickSpeed);
